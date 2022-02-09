@@ -1,0 +1,153 @@
+/*Author: Stephanie Livengood
+Class: CSCI201
+Date last updated: 09/01/2021
+Purpose: Get an initial date from user and then change it, while validating the input.*/
+
+#include <iostream>
+using namespace std;
+#include <string>
+
+//create class called Date
+class Date {
+  public:
+  //public members
+    int month, day, year;
+    
+//validate that the day chosen is correct for the month chosen
+    void validate(int m, int d, int y) {
+      int s;
+      
+      if(m == 02 && d > 28) {
+        throw s;
+      } else if (m == 04 && d > 30) {
+        throw s;
+      } else if (m == 06 && d > 30) {
+        throw s;
+      } else if (m == 9 && d > 30) {
+        throw s;
+      } else if (m == 11 && d > 30) {
+        throw s;
+      }
+      
+     
+}
+    //set the month
+    void set_month(int m) {
+      if(m > 12) {
+        string calendar;
+        throw (calendar);
+      }
+      month = m;
+    }
+
+    //set the day
+    void set_day(int d) {
+      if (d < 1 || d > 31) {
+      int s;
+      throw s;
+      }
+      day = d;
+    }
+
+    //set the year
+    void set_year(int y) {
+      if (y < 1900 || y > 2020) {
+        char x;
+        throw 0.0;
+      }
+      year = y;
+    }
+
+    //Turn the date into a string and output it for user.
+    void toString(int m, int d, int y){
+      //array of months
+      string months[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+      cout<<"The date is set to: "<<months[m-1]<<" "<< d<<", "<<y;
+    }
+  //create object
+  Date(int m, int d, int y);
+  
+};
+
+
+//constructor
+Date::Date(int m, int d, int y) {
+  m = month;
+  d = day;
+  y = year;
+}
+
+
+
+int main() {
+  int month;
+  int day;
+  int year;
+  string months[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
+//create an instance of object date
+  Date date1(month, day, year);
+  try {
+  cout<<"Let's set a date!"<<endl;
+
+  //get data from user to set a date
+  cout<<"Enter a two digit integer for the month (MM): "<<endl;
+  cin>>month;
+  
+  cout<<"Now, enter a two digit integer for the day (DD): "<<endl;
+  cin>>day;
+  
+
+  cout<<"Finally, enter a 4 digit integer for the year (YYYY): ";
+  cin>>year;
+  
+//call functions to set date
+  date1.validate(month, day, year);
+  date1.set_month(month);
+  date1.set_day(day);
+  date1.set_year(year);
+
+//change the date by getting new data from user
+  cout<<"Let's change the date now."<<endl;
+  cout<<"Change the month, using the same format (MM): "<<endl;
+  cin>>month;
+  cout<<"Now, change the day, using the same format (DD): "<<endl;
+  cin>>day;
+  cout<<"Finally, change the year, using the same format (YYYY): "<<endl;
+  cin>>year;
+
+//set the new date
+  date1.validate(month, day, year);
+  date1.set_month(month);
+  date1.set_day(day);
+  date1.set_year(year);
+
+//call function to output date for user
+  date1.toString(month, day, year);
+
+  }
+  //error for day being to high for month or being greater than 31
+  catch(int s) {
+    cout<<"ERROR: Invalid entry for day. "<<endl;
+    if(month == 04 || month == 06 || month == 9 || month == 11) {
+      cout<<"There are only 30 days in "<<months[month-1];
+    } else if (month == 02) {
+      cout<<"There are only 28 days in February";
+    } else {
+      cout<<"Day needs to be between 1 and 31.";
+    }
+    
+    }
+    //error for number of month being wrong
+  catch(string m) {
+    cout<<"Error: Invalid entry for month. Must be a number between 1 and 12."<<endl;
+  }
+  //error for year being too high or low
+  catch(double x) {
+    cout<<"Error: invalid year. Year must be between 1900 and 2020."<<endl;
+  }
+  
+  
+  
+  
+}
